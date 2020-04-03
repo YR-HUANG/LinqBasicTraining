@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LinqBasicTraining
@@ -8,7 +7,6 @@ namespace LinqBasicTraining
     public class UnitTest1
     {
         private List<Book> _books;
-
 
         [TestMethod]
         public void GetReceipt()
@@ -33,32 +31,6 @@ namespace LinqBasicTraining
                 new Book() {name = "g"},
                 new Book() {name = "h"},
             };
-        }
-    }
-
-    public class Book
-    {
-        public string name { get; set; }
-
-    }
-
-    public class BookStore
-    {
-        private readonly List<Book> _books;
-
-        public BookStore(List<Book> books)
-        {
-            _books = books;
-        }
-
-        public Book GetBookByName(string bookName)
-        {
-           return _books.Where(x => x.name == bookName).FirstOrDefault();
-        }
-
-        public string BuyBook(string customerName, string bookName)
-        {
-            return _books.Where(x => x.name == bookName).Select(x => $"Customer : {customerName} Book Name : {x.name}").FirstOrDefault();
         }
     }
 }
