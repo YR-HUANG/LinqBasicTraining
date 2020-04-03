@@ -12,11 +12,6 @@ namespace LinqBasicTraining
             _books = books;
         }
 
-        public Book GetBookByName(string bookName)
-        {
-            return _books.Where(x => x.name == bookName).FirstOrDefault();
-        }
-
         public string BuyBook(string customerName, string bookName)
         {
             return _books.Where(x => x.name == bookName).Select(x => $"Customer : {customerName} Book Name : {x.name}").FirstOrDefault();
