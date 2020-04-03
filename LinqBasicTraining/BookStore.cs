@@ -16,5 +16,10 @@ namespace LinqBasicTraining
         {
             return _books.Where(x => x.Name == bookName).Select(x => $"Customer : {customerName} Book Name : {x.Name}").FirstOrDefault();
         }
+
+        public int GetPrice(List<KeyValuePair<string, int>> buyList)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
