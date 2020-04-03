@@ -19,7 +19,11 @@ namespace LinqBasicTraining
 
         public double GetPrice(List<KeyValuePair<string, int>> buyList)
         {
-            throw new System.NotImplementedException();
+            var totalPrice = (from x in buyList
+                join y in _books on x.Key equals y.Name
+                select (x.Value * y.Price * y.Discount)).Sum().ToString();
+
+            return double.Parse(totalPrice);
         }
     }
 }
