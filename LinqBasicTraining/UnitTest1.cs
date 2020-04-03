@@ -21,15 +21,15 @@ namespace LinqBasicTraining
         {
             _books = new List<Book>()
             {
-                new Book() {name = "a"},
-                new Book() {name = "a"},
-                new Book() {name = "b"},
-                new Book() {name = "c"},
-                new Book() {name = "d"},
-                new Book() {name = "e"},
-                new Book() {name = "f"},
-                new Book() {name = "g"},
-                new Book() {name = "h"},
+                new Book() {Name = "a"},
+                new Book() {Name = "a"},
+                new Book() {Name = "b"},
+                new Book() {Name = "c"},
+                new Book() {Name = "d"},
+                new Book() {Name = "e"},
+                new Book() {Name = "f"},
+                new Book() {Name = "g"},
+                new Book() {Name = "h"},
             };
         }
     }
