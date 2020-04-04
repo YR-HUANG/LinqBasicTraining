@@ -14,7 +14,7 @@ namespace LinqBasicTraining
 
         public string BuyBook(string customerName, string bookName)
         {
-            return _books.Where(x => x.Name == bookName).Select(x => $"Customer : {customerName} Book Name : {x.Name}").FirstOrDefault();
+            return _books.Where(x => x.Name == bookName).Select(x => $"Customer : {customerName}, Book Name : {x.Name}").FirstOrDefault();
         }
 
         public double GetPrice(List<KeyValuePair<string, int>> buyList)
