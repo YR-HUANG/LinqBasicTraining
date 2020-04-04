@@ -21,9 +21,9 @@ namespace LinqBasicTraining
         {
             var totalPrice = (from x in buyList
                 join y in _books on x.Key equals y.Name
-                select (x.Value * y.Price * y.Discount)).Sum().ToString();
+                select (x.Value * y.Price * y.Discount)).Sum();
 
-            return double.Parse(totalPrice);
+            return totalPrice;
         }
     }
 }
