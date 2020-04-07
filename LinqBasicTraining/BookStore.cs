@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters;
 
 namespace LinqBasicTraining
 {
@@ -19,9 +21,26 @@ namespace LinqBasicTraining
 
         public double GetPrice(List<KeyValuePair<string, int>> buyList)
         {
-            var totalPrice = (from x in buyList
-                join y in _books on x.Key equals y.Name
-                select (x.Value * y.Price * y.Discount)).Sum();
+            double totalPrice = 0;
+            foreach (var buyBook in buyList)
+            {
+                var myBook = _books.FirstOrDefault(x=>x.Name==buyBook.Key);
+                if (buyBook.Value <= myBook.Stock)
+                {
+                    totalPrice += myBook.Price * myBook.Discount * buyBook.Value;
+                }
+                else
+                {
+                    totalPrice += myBook.Price * myBook.Discount * myBook.Stock;
+                }
+                
+            }
+            //foreach (double d in (buyList.Join(_books, x => x.Key, y => y.Name,
+            //    (x, y) => (x.Value * y.Price * y.Discount))))
+            //{
+            //    totalPrice += d;
+            //}
+
 
             return totalPrice;
         }
