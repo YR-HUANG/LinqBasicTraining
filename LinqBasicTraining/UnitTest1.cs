@@ -30,7 +30,36 @@ namespace LinqBasicTraining
                 new KeyValuePair<string, int>("d", 1),
             };
             var totalPrice = bookStore.GetPrice(buyList);
-            Assert.AreEqual( 100*3*0.9+150*2*0.7+300*3*0.8+400*1*0.9,totalPrice);
+            Assert.AreEqual( 100*1*0.9+150*2*0.7+300*3*0.8+400*1*0.9,totalPrice);
+        }
+        [TestMethod]
+        public void GetPriceWithoutD()
+        {
+            GivenBooks();
+            var bookStore = new BookStore(_books);
+            var buyList = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("a", 3),
+                new KeyValuePair<string, int>("b", 2),
+                new KeyValuePair<string, int>("c", 3),
+            };
+            var totalPrice = bookStore.GetPrice(buyList);
+            Assert.AreEqual(100 * 1 * 0.9 + 150 * 2 * 0.7 + 300 * 3 * 0.8 , totalPrice);
+        }
+        [TestMethod]
+        public void GetPriceStockOk()
+        {
+            GivenBooks();
+            var bookStore = new BookStore(_books);
+            var buyList = new List<KeyValuePair<string, int>>()
+            {
+                new KeyValuePair<string, int>("a", 3),
+                new KeyValuePair<string, int>("b", 2),
+                new KeyValuePair<string, int>("c", 3),
+                new KeyValuePair<string, int>("d", 1),
+            };
+            var totalPrice = bookStore.GetPrice(buyList);
+            Assert.AreEqual(100 * 1 * 0.9 + 150 * 2 * 0.7 + 300 * 3 * 0.8 + 400 * 0.9 * 1, totalPrice);
         }
 
 
@@ -38,10 +67,10 @@ namespace LinqBasicTraining
         {
             _books = new List<Book>()
             {
-                new Book() {Name = "a", Price = 100 , Discount = 0.9},
-                new Book() {Name = "b", Price = 150 , Discount = 0.7},
-                new Book() {Name = "c", Price = 300 , Discount = 0.8},
-                new Book() {Name = "d", Price = 400 , Discount = 0.9},
+                new Book() {Name = "a", Price = 100 , Discount = 0.9 , Stock = 1},
+                new Book() {Name = "b", Price = 150 , Discount = 0.7 , Stock = 2},
+                new Book() {Name = "c", Price = 300 , Discount = 0.8 , Stock = 3},
+                new Book() {Name = "d", Price = 400 , Discount = 0.9 , Stock = 4},
             };
         }
     }
