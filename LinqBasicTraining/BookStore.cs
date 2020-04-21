@@ -21,31 +21,15 @@ namespace LinqBasicTraining
 
         public double GetPrice(List<KeyValuePair<string, int>> buyList)
         {
-            double totalPrice = 0;
-           
+            var totalPrice = 0.0;
+            
             foreach (var buyBook in buyList)
             {
-                var bookCount =buyBook.Value;
-                var myBook = _books.FirstOrDefault(x=>x.Name==buyBook.Key);
-                totalPrice = GetBookPrice(buyBook, myBook, totalPrice);
-            }
-     
-            return totalPrice;
-        }
 
-        private static double GetBookPrice(KeyValuePair<string, int> buyBook, Book myBook, double totalPrice)
-        {
-            int bookCount;
-            if (buyBook.Value <= myBook.Stock)
-            {
-                bookCount = buyBook.Value;
-            }
-            else
-            {
-                bookCount = myBook.Stock;
+                var bookPrice =_books.Where(x => x.Name == buyBook.Key).Select(x => x.Price * x.Discount * (buyBook.Value >= x.Stock ? x.Stock : buyBook.Value)).FirstOrDefault();
+                totalPrice += bookPrice;
             }
 
-            totalPrice += myBook.Price * myBook.Discount * bookCount;
             return totalPrice;
         }
     }
